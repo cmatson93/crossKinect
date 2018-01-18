@@ -1,0 +1,28 @@
+.jumbotron {
+    border: 2px solid black;
+    background-color: black;
+    opacity: 0.8;
+    height: 100vh;
+    margin: 0;
+}
+
+.jumbotron H1 {
+    color: white;
+    align-self: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchBar {
+    align-self: center;
+    padding: 0;
+}
+
+.home {
+    background: url("../../assets/images/church.png");
+    background-size: cover;
+    height: 100vh;
+}
