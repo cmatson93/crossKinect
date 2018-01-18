@@ -6,88 +6,73 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import SearchBar from "../../components/SearchBar";
 
 class Churches extends Component {
-  state = {
-    churches: [],
-    name: "",
-    location: "",
-    summary: ""
-  };
-
-  componentDidMount() {
-    this.loadChurches();
-  }
-
-  loadChurches = () => {
-    API.getChurches()
-      .then(res =>
-        this.setState({ churches: res.data, name: "", location: "", summary: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteChurch = id => {
-    API.deleteChurch(id)
-      .then(res => this.loadChurches())
-      .catch(err => console.log(err));
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.name && this.state.location) {
-      API.saveChurch({
-        name: this.state.name,
-        location: this.state.location,
-        summary: this.state.summary
-      })
-        .then(res => this.loadChurches())
-        .catch(err => console.log(err));
+    state = {
+        churches: [],
+        name: "",
+        location: "",
+        summary: "",
+        query: this.props.match.params || {}
     }
-  };
 
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What churches Should I Read?</h1>
-            </Jumbotron>
-            
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>churches On My List</h1>
-            </Jumbotron>
-            {this.state.churches.length ? (
-              <List>
-                {this.state.churches.map(church => (
-                  <ListItem key={church._id}>
-                    <Link to={"/churches/" + church._id}>
-                      <strong>
-                        {church.name} by {church.location}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deletechurch(church._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+    checkState = () => {
+        let searchObj = {};
+        if (this.state.name.length > 0) {
+            searchObj.name = this.state.name;
+        }
+        if (this.state.location.length > 0) {
+            searchObj.location = this.state.location;
+        }
+        return searchObj;
+    }
+
+    handleInputChange = event => {
+        console.log("-");
+        // Destructure the name and value properties off of event.target
+        // Update the appropriate state
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state);
+    }
+
+    handleFormSubmit = event => {
+        console.log("Button pushed");
+        console.log(this.state.location);
+        event.preventDefault();
+        if (this.state.location) {
+            API.getChurches({
+                    location: this.state.location
+                })
+                .then(res => console.log(res.data))
+                //this.setState({churches: res.data , name: "", location: "", summary: ""}) ;
+                .catch(err => console.log(err));
+        }
+    }
+
+    loadBooks = () => {
+        API.getChurches()
+            .then(res =>
+                this.setState({ churches: res.data, name: "", location: "", summary: "" })
+            )
+            .catch(err => console.log(err));
+    }
+
+    render() {
+        return (
+            <SearchBar 
+            className = "searchBar"
+            inputHandler = { this.handleInputChange }
+            buttonHandler = { this.handleFormSubmit }
+            value = { this.state.location }
+            location = { this.state.location }
+            name = 'location' 
+            />
+        );
+    }
 }
 
 export default Churches;

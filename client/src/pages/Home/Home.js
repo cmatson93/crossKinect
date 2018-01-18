@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import SearchBar from "../../components/SearchBar";
 import { Container, Col, Row, Jumbotron } from 'reactstrap';
 import "./Home.css";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
 	state = {
@@ -63,14 +63,11 @@ class Home extends Component {
 				<Jumbotron fluid className="jumbotron">
 					<Container fluid className="container">
 						<h1>HOME PAGE</h1>
-						<SearchBar
-							className="searchBar"
-							inputHandler={this.handleInputChange}
-							buttonHandler={this.handleFormSubmit}
-							value={this.state.location}
-							location={this.state.location}
-							name='location'
-						/> 
+						<Link to={"/churches"}>
+							<button>
+								Find Your Church 
+							</button>
+						</Link>
 					</Container>
 				</Jumbotron>
 				
