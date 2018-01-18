@@ -1,7 +1,5 @@
 .jumbotron {
-    border: 2px solid black;
-    background-color: black;
-    opacity: 0.8;
+    background: rgba(239, 118, 122, 0.3);
     height: 100vh;
     margin: 0;
 }
@@ -12,13 +10,9 @@
 }
 
 .container {
+    margin-top: 200px;
     display: flex;
     flex-direction: column;
-}
-
-.searchBar {
-    align-self: center;
-    padding: 0;
 }
 
 .home {
