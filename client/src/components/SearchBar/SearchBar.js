@@ -10,7 +10,7 @@ export default class SearchBar extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-    	
+    	churches: []
     };
   	// props.platformQuery()
 	// 		.then(res => this.setState({ platforms: res.data }))
@@ -20,19 +20,18 @@ export default class SearchBar extends Component {
 	render() {
 		return (
 			<div className='searchbar '>
-                {/* <Row className='search-bar-row justify-content-center'>  */}
-                    <Col className='col-search-location'>
-                        <Input
-                            className="location-seach-input"
-                            placeholder='Search Location'
-                            onChange={this.props.inputHandler}
-                            value={this.props.location}
-                        />
-                    </Col>
-                    <Col className='col-search-btn'>
-						<Button className="btn" onClick={this.props.buttonHandler}>Search</Button>
-					</Col>
-				{/* </Row>  */}
+                <Col className='col-search-location'>
+                    <Input
+                        className="location-seach-input"
+                        placeholder='Search Location'
+                        onChange={this.props.inputHandler}
+                        name='location'
+                        value={this.props.location}
+                    />
+                </Col>
+                <Col className='col-search-btn'>
+                    <Button className="btn" onClick={this.props.buttonHandler}>Search</Button>
+                </Col>
 			</div>
 		);
 	}
