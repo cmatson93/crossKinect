@@ -25,7 +25,10 @@ class Detail extends Component {
         <h1>
          {this.state.church.name} , {this.state.church.location}
         </h1>
-        
+        <h2>Things to know</h2>
+        <h3>
+          {this.state.church.summary}
+        </h3>
       </Container>
     );
   }
