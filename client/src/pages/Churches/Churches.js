@@ -41,22 +41,23 @@ class Churches extends Component {
 
     handleFormSubmit = event => {
         console.log("Button pushed");
-        console.log(this.state.location);
+        // console.log(this.state.location);
         event.preventDefault();
         if (this.state.location) {
             API.getChurches({
                     location: this.state.location
                 })
               .then(res => this.setState({ churches: res.data, name: "", location: "", summary: "" }))
-                // console.log(res.data);
-                .catch(err => console.log(err));
+                //  console.log(res.data)
+              .catch(err => console.log(err));
         }
     }
 
     loadChurches = () => {
         API.getChurches()
             .then(res =>
-                this.setState({ churches: res.data, name: "", location: "", summary: "" })
+                this.setState({ churches: res.data, name: "", location: "", summary: "" },
+              console.log("STATE", this.state))
             )
             .catch(err => console.log(err));
     }
