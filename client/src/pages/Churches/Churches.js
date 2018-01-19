@@ -47,13 +47,13 @@ class Churches extends Component {
             API.getChurches({
                     location: this.state.location
                 })
-                .then(res => console.log(res.data))
-                //this.setState({churches: res.data , name: "", location: "", summary: ""}) ;
+              .then(res => this.setState({ churches: res.data, name: "", location: "", summary: "" }))
+                // console.log(res.data);
                 .catch(err => console.log(err));
         }
     }
 
-    loadBooks = () => {
+    loadChurches = () => {
         API.getChurches()
             .then(res =>
                 this.setState({ churches: res.data, name: "", location: "", summary: "" })
@@ -63,6 +63,7 @@ class Churches extends Component {
 
     render() {
         return (
+          <div>
             <SearchBar 
             className = "searchBar"
             inputHandler = { this.handleInputChange }
@@ -71,6 +72,23 @@ class Churches extends Component {
             location = { this.state.location }
             name = 'location' 
             />
+            {this.state.churches.length ? (
+              <List>
+                {this.state.churches.map(church => (
+                  <ListItem key={church._id}>
+                    <Link to={"/churches/" + church._id}>
+                      <strong>
+                        {church.name} , {church.location}
+                      </strong>
+                    </Link>
+                    {/* <DeleteBtn onClick={() => this.deleteChurch(church._id)} /> */}
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </div>
         );
     }
 }

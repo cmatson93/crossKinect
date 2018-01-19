@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Col, Row, Jumbotron } from 'reactstrap';
+import { Container, Col, Row, Jumbotron, Button } from 'reactstrap';
 import "./Home.css";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -11,8 +11,9 @@ class Home extends Component {
 			<div className="home">
 				<Jumbotron fluid className="jumbotron">
 					<Container fluid className="container">
-						<h1>HOME PAGE</h1>
-						<Link to={"/churches"}>
+						<h1>Cross Kinect</h1>
+						<h3>Find a community to KINECT with no matter where you are. </h3>
+						<Link to={"/churches"} style={{ textDecoration: 'none' }}>
 							<button>
 								Find Your Church 
 							</button>
