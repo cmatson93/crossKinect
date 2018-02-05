@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import SearchBar from "../../components/SearchBar";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class Churches extends Component {
     state = {
@@ -73,6 +74,17 @@ class Churches extends Component {
             location = { this.state.location }
             name = 'location' 
             />
+            {/* <Map google={this.props.google} zoom={14}>
+
+              <Marker onClick={this.onMarkerClick}
+                name={'Current location'} />
+
+              <InfoWindow onClose={this.onInfoWindowClose}>
+                <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                </div>
+              </InfoWindow>
+            </Map> */}
             {this.state.churches.length ? (
               <List>
                 {this.state.churches.map(church => (
