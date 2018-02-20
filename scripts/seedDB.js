@@ -34,6 +34,12 @@ const churchSeed = [{
         summary: 'A college ministry that meets at Truman State University on Wednesday nights and Sunday mornings.',
         date: new Date(Date.now())
     },
+    {
+        name: "CCF",
+        location: "Kirksville, MO",
+        summary: 'A college ministry that meets at Truman State University on Wednesday nights and Sunday mornings.',
+        date: new Date(Date.now())
+    },
 ];
 
 db.Church
