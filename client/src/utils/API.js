@@ -3,6 +3,7 @@ import axios from "axios";
 export default {
     // Gets all books
     getChurches: function(params) {
+        console.log(params);
         return axios.get("/api/churches", { params });
     },
     // Gets the book with the given id
